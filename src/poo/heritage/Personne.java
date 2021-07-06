@@ -2,7 +2,7 @@ package poo.heritage;
 
 import java.time.LocalDate;
 
-public class Personne {
+public abstract class Personne {
 
     private String prenom;
     private String nom;
@@ -17,6 +17,7 @@ public class Personne {
     public void manger() {
         System.out.println("La personne mange");
     }
+    public abstract void travailler();
 
     // region get/set
 

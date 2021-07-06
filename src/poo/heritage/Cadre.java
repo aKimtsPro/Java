@@ -1,6 +1,5 @@
 package poo.heritage;
 
-import java.io.OutputStream;
 import java.time.LocalDate;
 
 public class Cadre extends Personne {
@@ -10,6 +9,11 @@ public class Cadre extends Personne {
     public Cadre(String prenom, String nom, LocalDate dateNaiss, double salaireMois) {
         super(prenom, nom, dateNaiss);
         this.salaireMois = salaireMois;
+    }
+
+    @Override
+    public void travailler() {
+        System.out.println("En tant que cadre je travaille");
     }
 
     // region get/set

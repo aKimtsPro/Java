@@ -2,7 +2,7 @@ package poo.heritage;
 
 import java.time.LocalDate;
 
-public class Employe extends Personne {
+public abstract class Employe extends Personne {
 
     private double salaireHeure;
 
