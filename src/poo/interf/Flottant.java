@@ -6,5 +6,4 @@ public interface Flottant {
     void flotter( int distance );
 
     void couler();
-
 }
