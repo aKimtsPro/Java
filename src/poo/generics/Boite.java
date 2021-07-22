@@ -1,9 +1,13 @@
 package poo.generics;
 
+import exo.polymorphisme.Personne;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Boite<C> {
+public class Boite<C extends Lancable> {
 
+    private final ArrayList<C> contenuList;
     private final Object[] contenu;
     private final int capacite;
     private int nbrContenu = 0;
@@ -11,6 +15,7 @@ public class Boite<C> {
     public Boite(int capacite) {
         this.capacite = capacite;
         contenu = new Object[capacite];
+        contenuList = new ArrayList<>();
     }
 
     public int ajouter(C toAdd){
@@ -40,13 +45,23 @@ public class Boite<C> {
         return o;
     }
 
-    public int indexOf(C o){
+    public int indexOf( C o){
         for (int i = 0; i < nbrContenu; i++) {
             if( contenu[i] == o ){
                 return i;
             }
         }
         return -1;
+    }
+
+    public int lancerTout(){
+        int sum = 0;
+
+        for (int i = 0; i < nbrContenu; i++) {
+            sum += retirer(i).lancer();
+        }
+
+        return sum;
     }
 
     @Override

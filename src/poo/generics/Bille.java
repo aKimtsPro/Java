@@ -1,6 +1,6 @@
 package poo.generics;
 
-public class Bille {
+public class Bille implements Lancable {
 
     private int diametre;
     public int lancer(){
