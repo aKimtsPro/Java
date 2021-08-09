@@ -7,6 +7,8 @@ public class Main {
 
         // System.out.println("" + String.format("%.2f, %d, %s", 0.45497313737, 3, "salut"));
 
+        System.out.println("salut");
+
         Circuit c = new Circuit(3,"spa", 10);
         Voiture v = new Voiture("VrimVroom",210,"Marie Vitesse");
         Voiture v1 = new Voiture("BipBoop",220,"Pol Rapide");
