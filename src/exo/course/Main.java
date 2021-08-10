@@ -1,5 +1,8 @@
 package exo.course;
 
+import java.time.Duration;
+import java.util.Comparator;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -16,7 +19,9 @@ public class Main {
 
         c.concourir(v);
         c.concourir(v1);
+        c.concourir(v1);
         c.concourir(v2);
+        c.concourir(v);
 
         System.out.println(c);
 

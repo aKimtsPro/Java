@@ -54,10 +54,12 @@ public class Circuit {
 
     @Override
     public String toString() {
+
+
         return "-- Circuit --" +
                 "\nnbrTour=" + nbrTour +
                 "\nnom='" + nom + '\'' +
                 "\nlongueurTour=" + longueurTour +
-                "\nleaderboard=" + leaderboard ;
+                "\nleaderboard=[\n" + getLeaderboard() +"]" ;
     }
 }

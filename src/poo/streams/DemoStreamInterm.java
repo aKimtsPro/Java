@@ -107,9 +107,9 @@ public class DemoStreamInterm {
 
         System.out.println("--- PEEK ---");
         assiettes.stream()
-                .peek(x -> System.out.println("peek : " + x))
+                .peek( x -> System.out.println("peek : " + x) )
                 .filter(e -> e.getMarque().length() < 10)
-                .forEach(x1 -> System.out.println("forEach : " + x1));
+                .forEach( x1 -> System.out.println("forEach : " + x1) );
 
 
         // skip

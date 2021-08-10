@@ -78,7 +78,7 @@ public class StreamFinal {
         s = generateStream();
 //            .filter(e -> e > 100);
 
-        opt = s.reduce( (acc, add) -> add%2 == 0 ? acc - add : acc + add );
+        opt = s.reduce( (acc, add) ->  acc+add );
         System.out.println(  opt.get() );
 
         s = generateStream();
@@ -88,11 +88,11 @@ public class StreamFinal {
         System.out.println("--- COLLECT ---");
         s = generateStream();
 
-        Collection<Integer> list = s.collect(Collectors.toCollection(LinkedList::new));
+//        Collection<Integer> list = s.collect(Collectors.toCollection(LinkedList::new));
 //        Collection<Integer> list  = s.collect(Collectors.toUnmodifiableList());
-//        Collection<Integer> list = s.collect(Collectors.toList()); // ArrayList
+        Collection<Integer> list = s.collect(Collectors.toList()); // ArrayList
 //        Collection<Integer> list = s.collect(Collectors.toSet()); // HashSet
-//        Map<Integer, Integer> map = s.collect(Collectors.toMap(e -> e, e -> e ));
+//        Map<Integer, Integer> map = s.collect(Collectors.toMap( e -> e, e -> e ));
         System.out.println( list.getClass().getSimpleName() );
 
 

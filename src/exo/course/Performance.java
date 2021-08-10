@@ -34,17 +34,15 @@ public class Performance {
     @Override
     public String toString() {
 
-        StringBuilder temps = new StringBuilder();
-
-        for (Duration temp : this.temps) {
-            temps.append(temp.getSeconds()).append("sec, ");
+        StringBuilder lb = new StringBuilder();
+        lb.append("- Performance").append('\n');
+        lb.append("auteur : ").append(getAuteur().getNomPilote()).append('\n');
+        for (int i = 0; i < getTemps().size(); i++) {
+            lb.append("temps ").append(i+1).append(" : ").append(getTemps().get(i).getSeconds()).append("sec").append('\n');
         }
+        lb.append("temps total : ").append(getTotalTime().getSeconds()).append("sec\n");
 
-        return "Performance{" +
-                "auteur=" + auteur +
-                ", temps=" + temps +
-                ", temps total =" + getTotalTime().getSeconds() +
-                "sec }";
+        return lb.toString();
     }
 
 
