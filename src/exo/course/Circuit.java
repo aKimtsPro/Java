@@ -3,7 +3,9 @@ package exo.course;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Circuit {
 
@@ -51,6 +53,56 @@ public class Circuit {
     public List<Performance> getLeaderboard() {
         return leaderboard;
     }
+
+    // EXO 1
+    // l'ensemble des Performances réalisées par un pilote donné
+    public List<Performance> getPerformanceBy(String pilote){
+        return leaderboard.stream()
+                .filter( perf -> perf.getAuteur().getNomPilote().equals(pilote) )
+                .collect( Collectors.toList() );
+    }
+
+    // EXO 2
+    // les différents noms des pilotes ayant parcouru le circuit
+    public List<String> getDistinctPilotes(){
+        return leaderboard.stream()
+                .map( perf -> perf.getAuteur().getNomPilote() )
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    // EXO 3
+    // le temps total en sec passé sur le circuit pour les perfomances
+    public long getTotalTimeOnTrack(){
+
+//        long total = leaderboard.stream()
+//                .map(perf -> perf.getTotalTime())
+//                .reduce((acc, add) -> acc.plus(add) )
+//                .get()
+//                .getSeconds();
+
+        long total = leaderboard.stream()
+                .map( Performance::getTotalTime )
+                .reduce(Duration.ZERO, Duration::plus)
+                .getSeconds();
+
+//        long total = leaderboard.stream()
+//                .map(perf -> perf.getTotalTime().getSeconds())
+//                .reduce((acc, add) -> acc + add )
+//                .get();
+
+//        long total = leaderboard.stream()
+//                .map(perf -> perf.getTotalTime().getSeconds())
+//                .reduce(0L, (acc, add) -> acc + add );
+
+//        long total = leaderboard.stream()
+//                .mapToLong(perf -> perf.getTotalTime().getSeconds())
+//                .sum();
+
+        return total;
+
+    }
+
 
     @Override
     public String toString() {

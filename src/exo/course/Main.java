@@ -2,6 +2,9 @@ package exo.course;
 
 import java.time.Duration;
 import java.util.Comparator;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -25,6 +28,16 @@ public class Main {
 
         System.out.println(c);
 
+        System.out.println("\n----------------\n");
+
+        System.out.println("--- EXO 1 ---");
+        System.out.println( c.getPerformanceBy("Dominique Haleur") );
+
+        System.out.println("--- EXO 2 ---");
+        System.out.println( c.getDistinctPilotes() );
+
+        System.out.println("--- EXO 3 ---");
+        System.out.println( c.getTotalTimeOnTrack() );
 
     }
 
