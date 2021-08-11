@@ -6,25 +6,36 @@ public class DemoRead {
 
     public static void main(String[] args) {
 
-        try(BufferedReader r = new BufferedReader(new FileReader("./ressources/test.csv"))) {
-            r.lines().skip(1)
-                    .map(e -> {
-                        String[] tab =  e.split(",");
-                        if(tab.length != 5)
-                            throw new RuntimeException("trop de partie, a corriger");
+        // try-with-ressource(s) - ferme automatiquement les ressources
+//        try( Reader r = new FileReader("ressources/test.csv") ) {
+//            System.out.println("fichier ouvert");
+//
+//            int current;
+//            while( (current = r.read()) != -1 ){
+//                System.out.print( (char)current );
+//            }
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("fichier fermé");
 
-                        return tab;
+        //
+        try ( BufferedReader br = new BufferedReader( new FileReader("ressources/test.csv") ) ){
 
-                    } ).forEach(strings -> {
-                for (String string : strings) {
-                    System.out.print(string+", ");
-                }
-                System.out.println();
-            });
+            br.lines()
+                    .forEach(System.out::println);
+
+//            String line;
+//            while( (line = br.readLine()) != null ){
+//                System.out.println(line);
+//            }
+
         }
-        catch (IOException e){
-            e.printStackTrace();
-        }
+        catch (IOException ignored){}
+
+
+
 
     }
 

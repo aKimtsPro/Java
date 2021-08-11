@@ -19,12 +19,14 @@ public class Main {
         Voiture v = new Voiture("VrimVroom",210,"Marie Vitesse");
         Voiture v1 = new Voiture("BipBoop",220,"Pol Rapide");
         Voiture v2 = new Voiture("VrimVroom",205,"Dominique Haleur");
+        Voiture v3 = new Voiture("S-CarGo",105,"Benoit Lent");
+        Voiture v4 = new Voiture("S-CarGo",158,"Louise Enlise");
 
         c.concourir(v);
         c.concourir(v1);
-        c.concourir(v1);
         c.concourir(v2);
-        c.concourir(v);
+        c.concourir(v3);
+        c.concourir(v4);
 
         System.out.println(c);
 
@@ -38,6 +40,15 @@ public class Main {
 
         System.out.println("--- EXO 3 ---");
         System.out.println( c.getTotalTimeOnTrack() );
+
+        System.out.println("--- EXO 4 ---");
+        c.displayOrderedPerf();
+
+        System.out.println("--- EXO 5 ---");
+        System.out.println( c.verifMaxTimePerBrand("VrimVroom", 520));
+
+        System.out.println("--- EXO 6 ---");
+        System.out.println( c.getBestCars() );
 
     }
 

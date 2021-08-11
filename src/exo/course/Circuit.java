@@ -1,10 +1,8 @@
 package exo.course;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Circuit {
@@ -61,7 +59,6 @@ public class Circuit {
                 .filter( perf -> perf.getAuteur().getNomPilote().equals(pilote) )
                 .collect( Collectors.toList() );
     }
-
     // EXO 2
     // les différents noms des pilotes ayant parcouru le circuit
     public List<String> getDistinctPilotes(){
@@ -70,7 +67,6 @@ public class Circuit {
                 .distinct()
                 .collect(Collectors.toList());
     }
-
     // EXO 3
     // le temps total en sec passé sur le circuit pour les perfomances
     public long getTotalTimeOnTrack(){
@@ -102,6 +98,36 @@ public class Circuit {
         return total;
 
     }
+    // EXO 4
+    // Voir les performances dans l'ordre des temps totaux(meilleur->pire)
+    public void displayOrderedPerf(){
+        leaderboard.stream()
+                .sorted( Comparator.comparing(Performance::getTotalTime) )
+                .forEach(System.out::println);
+    }
+    // EXO 5
+    // verification que l'ensemble des Performances des voitures d'une marque donnée ont toutes
+    // un temps total inférieur à 450sec.
+    public boolean verifMaxTimePerBrand( String brand, long limit ){
+        return leaderboard.stream()
+                .filter( perf -> perf.getAuteur().getNomConstructeur().equals(brand) )
+                .allMatch( perf -> perf.getTotalTime().getSeconds() < limit );
+    }
+    // EXO 6
+    // LinkedList des 3 voitures distincts ayant fait les meilleurs temps
+    public LinkedList<Voiture> getBestCars() {
+
+        LinkedList<Voiture> rslt = leaderboard.stream()
+                .sorted( Comparator.comparing(Performance::getTotalTime) )
+                .map(Performance::getAuteur) // Stream<Voiture>
+                .distinct()
+                .limit(3)
+                .collect( Collectors.toCollection( LinkedList::new ));
+
+        return rslt;
+
+    }
+
 
 
     @Override
