@@ -1,8 +1,12 @@
-package poo.io;
+package poo.io.lecture;
+
+import poo.io.Personne;
 
 import java.io.*;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DemoRead {
 
@@ -57,38 +61,30 @@ public class DemoRead {
 //        characterList
 //                .forEach(System.out::print);
 
-        //
-
+        // BufferedReader
         List<Personne> pers = new ArrayList<>();
         try ( BufferedReader br = new BufferedReader( new FileReader("ressources/test.csv") ) ){
 
-//            br.lines()
-//                    .forEach(System.out::println);
+            br.lines()
+                    .skip(1)
+                    .map( Personne::createFromCSVLine )
+                    .forEach( pers::add );
 
-            br.readLine(); // skip the title line
+//            br.readLine(); // skip the title line
+//
+//            String line;
+//            while( (line = br.readLine()) != null ){
+//                pers.add( Personne.createFromCSVLine(line) );
+//            }
 
-            String line;
-            Personne p = null;
-            while( (line = br.readLine()) != null ){
-                p = new Personne();
-
-                String[] values = line.split(",");
-
-                p.setId( Long.parseLong(values[0]) );
-                p.setPrenom( values[1] );
-                p.setNom( values[2] );
-                p.setEmail( values[3] );
-                p.setProfession( values[4] );
-
-                pers.add( p );
-            }
         }
         catch (IOException ignored){}
+        catch (IndexOutOfBoundsException | NumberFormatException ex ){
+            System.out.println("Le fichier est corrompu");
+            pers = new ArrayList<>();
+        }
 
-        pers.forEach(System.out::println);
-
-
-
+        pers.forEach( p -> System.out.println( p.getNom() ));
 
     }
 

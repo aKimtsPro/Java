@@ -59,6 +59,20 @@ public class Personne {
         this.profession = profession;
     }
 
+    public static Personne createFromCSVLine(String line) {
+        Personne p = new Personne();
+
+        String[] values = line.split(",");
+
+        p.setId( Long.parseLong(values[0]) );
+        p.setPrenom( values[1] );
+        p.setNom( values[2] );
+        p.setEmail( values[3] );
+        p.setProfession( values[4] );
+
+        return p;
+    }
+
     @Override
     public String toString() {
         return "Personne{" +
